@@ -59,7 +59,7 @@
 						<strong>Status</strong>
 					</label>
 					<div class="col-sm-2">
-						<select class="form-control" name="status">
+						<select class="form-control" name="status"  th:field="*{status}" >
 							<option th:each="status : ${todosStatusTitulo}"
 								th:value="${status}" th:text="${status.descricao}"></option>
 						</select>

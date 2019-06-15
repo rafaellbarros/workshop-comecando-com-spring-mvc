@@ -35,14 +35,14 @@ $(() => {
             type: 'PUT'
         });
 
-        response.done(function (e) {
+        response.done((e) => {
             const codigoTitulo = botaoReceber.data('codigo');
             $(`[data-role=${codigoTitulo}]`).html(`<span class="badge badge-success">${e}</span>`)
             botaoReceber.hide();
 
         });
 
-        response.fail(function (e) {
+        response.fail((e) => {
             console.error(e);
             alert('Erro recebendo cobrança');
         });
