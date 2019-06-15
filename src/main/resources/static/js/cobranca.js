@@ -8,7 +8,7 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function (event) {
 
     const form = modal.find('form');
 
-    let action = form.attr('action');
+    let action = form.data('url-base');
 
     if (!action.endsWith('/')) {
         action += '/';
