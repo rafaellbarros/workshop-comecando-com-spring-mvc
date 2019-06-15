@@ -20,7 +20,15 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function (event) {
 
 });
 
-$(function() {
+$(() => {
     $('[rel="tooltip"]').tooltip();
     $('.js-currency').maskMoney({decimal: ',', thousands: '.', allowZero: true});
+
+    $('.js-atualizar-status').on('click', (event) => {
+        event.preventDefault();
+
+        const botaoReceber = $(event.currentTarget);
+        const urlReceber = botaoReceber.attr('href');
+
+    })
 })

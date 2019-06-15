@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="LayoutPadrao">
+
 <head>
 	<meta charset="UTF-8" />
 	<title>Pesquisa de título</title>
@@ -24,8 +24,8 @@
 						<th class="text-left col-4">Descrição</th>
 						<th class="text-center col-2">Data de vencimento</th>
 						<th class="text-right col-2">Valor</th>
-						<th class="text-center col-2">Status</th>
-						<th class="text-center col-1"></th>
+						<th class="text-center col-1">Status</th>
+						<th class="text-center col-2"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -34,22 +34,27 @@
 						<td class="text-left col-4" th:text="${titulo.descricao}"></td>
 						<td class="text-center col-2" th:text="${{titulo.dataVencimento}}"></td>
 						<td class="text-right col-2" th:text="|R$ ${{titulo.valor}}|"></td>
-						<td class="text-center col-2">
+						<td class="text-center col-1">
 							<span class="badge" th:text="${titulo.status.descricao}"
 								th:classappend="${titulo.pendente ? 'badge-danger' : 'badge-success'}"></span>
 						</td>
-						<td class="text-center col-1">
+						<td class="text-center col-2">
 							<div class="row d-flex justify-content-center">
-									<a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"
-										title="Editar" rel="tooltip" data-placement="top">
-										<span class="fas fa-pencil-alt"></span>
-									</a>
-									<a href="javascript:void(0)" class="btn btn-link btn-xs" data-toggle="modal" 
-										data-target="#confirmacaoExclusaoModal" th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}"
-										title="Excluir" rel="tooltip" data-placement="top">
-											<span class="fas fa-trash-alt"></span>
-									</a>
-							</div>	
+								<a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"
+									title="Editar" rel="tooltip" data-placement="top">
+									<span class="fas fa-pencil-alt"></span>
+								</a>
+								<a href="javascript:void(0)" class="btn btn-link btn-xs" data-toggle="modal"
+									data-target="#confirmacaoExclusaoModal"
+									th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}"
+									title="Excluir" rel="tooltip" data-placement="top">
+									<span class="fas fa-trash-alt"></span>
+								</a>
+								<a th:href="@{/titulos/{codigo}/receber(codigo=${titulo.codigo})}" class="btn btn-link btn-xs js-atualizar-status" th:if="${titulo.pendente}"
+									title="Receber" rel="tooltip" data-placement="top">
+									<span class="fas fa-check"></span>
+								</a>
+							</div>
 						</td>
 					</tr>
 					<tr>
