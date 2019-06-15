@@ -5,6 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.algaworks.cobranca.model.Titulo;
+import com.algaworks.cobranca.model.enums.StatusTitulo;
 import com.algaworks.cobranca.repository.TituloRepository;
 
 @Service
@@ -24,6 +25,14 @@ public class TituloService {
 
 	public void excluir(Long codigo) {
 		tituloRepository.delete(codigo);
+	}
+
+	public String receber(Long codigo) {
+		Titulo titulo = tituloRepository.findOne(codigo);
+		titulo.setStatus(StatusTitulo.RECEBIDO);
+		tituloRepository.save(titulo);
+		
+		return StatusTitulo.RECEBIDO.getDescricao();
 	}
 
 }

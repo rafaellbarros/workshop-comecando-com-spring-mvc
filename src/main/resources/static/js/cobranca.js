@@ -30,5 +30,24 @@ $(() => {
         const botaoReceber = $(event.currentTarget);
         const urlReceber = botaoReceber.attr('href');
 
+        const response = $.ajax({
+            url: urlReceber,
+            type: 'PUT'
+        });
+
+        response.done(function (e) {
+            const codigoTitulo = botaoReceber.data('codigo');
+            $(`[data-role=${codigoTitulo}]`).html(`<span class="badge badge-success">${e}</span>`)
+            botaoReceber.hide();
+
+        });
+
+        response.fail(function (e) {
+            console.error(e);
+            alert('Erro recebendo cobrança');
+        });
+
+
+
     })
 })
