@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.algaworks.cobranca.model.Titulo;
 import com.algaworks.cobranca.model.enums.StatusTitulo;
 import com.algaworks.cobranca.repository.TituloRepository;
+import com.algaworks.cobranca.service.TituloService;
 
 @Controller
 @RequestMapping("/titulos")
@@ -26,6 +28,9 @@ public class TituloController {
 	
 	@Autowired
 	private TituloRepository tituloRepository;
+	
+	@Autowired
+	private TituloService tituloService;
 
 	@RequestMapping("/novo")
 	public ModelAndView novo() {
@@ -49,12 +54,15 @@ public class TituloController {
 			return CADASTRO_VIEW;
 		}
 		
-		tituloRepository.save(titulo);
-		
-		String msg = String.format("Título %s com sucesso!", titulo.getCodigo() != null ? "alterado" : "salvo");
-		
-		attributes.addFlashAttribute("mensagem", msg);
-		return "redirect:/titulos/novo";
+		try {
+			tituloService.salvar(titulo);
+			String msg = String.format("Título %s com sucesso!", titulo.getCodigo() != null ? "alterado" : "salvo");
+			attributes.addFlashAttribute("mensagem", msg);
+			return "redirect:/titulos/novo";
+		} catch (IllegalArgumentException e) {
+			errors.reject("dataVencimento", null, e.getMessage());
+			return CADASTRO_VIEW;
+		}
 	}
 	
 	@RequestMapping("{codigo}")
@@ -66,9 +74,14 @@ public class TituloController {
 	
 	@RequestMapping(value="{codigo}", method = RequestMethod.DELETE)
 	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
-		tituloRepository.delete(codigo);
+		tituloService.excluir(codigo);
 		attributes.addFlashAttribute("mensagem", "Título excluído com sucesso!");
 		return "redirect:/titulos";
+	}
+	
+
+	public void receber() {
+		
 	}
 	
 	@ModelAttribute("todosStatusTitulo")
