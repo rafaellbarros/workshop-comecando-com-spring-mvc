@@ -17,6 +17,26 @@
 			</h5>
 		</div>
 		<div class="card-body">
+
+			<form action="" method="GET">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="input-group">
+								<input class="form-control" type="text" placeholder="Qual título você está procurando?"
+									autofocus="autofocus" />
+								<div class="input-group-append">
+									<button class="input-group-text">
+										<i class="fas fa-search text-grey"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>	
+			</form>
+
+
 			<table class="table table-striped table-bordered">
 				<thead>
 					<tr class="d-flex">
@@ -52,8 +72,8 @@
 								</a>
 								<a class="btn btn-link btn-xs js-atualizar-status" th:if="${titulo.pendente}"
 									th:attr="data-codigo=${titulo.codigo}"
-									th:href="@{/titulos/{codigo}/receber(codigo=${titulo.codigo})}"
-									title="Receber" rel="tooltip" data-placement="top">
+									th:href="@{/titulos/{codigo}/receber(codigo=${titulo.codigo})}" title="Receber"
+									rel="tooltip" data-placement="top">
 									<span class="fas fa-check"></span>
 								</a>
 							</div>
