@@ -26,7 +26,7 @@
 					</label>
 					<div class="col-sm-4">
 						<input type="text" class="form-control" id="descricao"
-							name="descricao" th:classappend="${#fields.hasErrors('descricao')} ? is-invalid" />
+							th:field="*{descricao}" th:classappend="${#fields.hasErrors('descricao')} ? is-invalid" />
 					</div>
 				</div>
 
@@ -36,7 +36,7 @@
 					</label>
 					<div class="col-sm-2">
 						<input type="text" class="form-control" id="dataVencimento"
-							name="dataVencimento" th:classappend="${#fields.hasErrors('dataVencimento')} ? is-invalid"/>
+							th:field="*{dataVencimento}" th:classappend="${#fields.hasErrors('dataVencimento')} ? is-invalid"/>
 					</div>
 				</div>
 
@@ -45,7 +45,7 @@
 						<strong>Valor</strong>
 					</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" id="valor" name="valor" 
+						<input type="text" class="form-control" id="valor" th:field="*{valor}" 
 							th:classappend="${#fields.hasErrors('valor')} ? is-invalid"/>
 					</div>
 				</div>
