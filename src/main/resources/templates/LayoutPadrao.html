@@ -4,10 +4,10 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Cobrança</title>
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="/css/fontawesome/all.min.css" />
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker3.standalone.min.css" />
-	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/fontawesome/all.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datepicker3.standalone.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 </head>
 <body>
 	<header layout:include="Cabecalho"></header>
@@ -17,12 +17,12 @@
 		</section>
 	</div>
 
-<script src="/js/jquery.min.js"></script>
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/bootstrap-datepicker.min.js"></script>
-<script src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
-<script src="/js/jquery.maskMoney.min.js"></script>
-<script src="/js/cobranca.js"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/js/bootstrap-datepicker.pt-BR.min.js}"></script>
+<script th:src="@{/js/jquery.maskMoney.min.js}"></script>
+<script th:src="@{/js/cobranca.js}"></script>
 </body>
 </html>

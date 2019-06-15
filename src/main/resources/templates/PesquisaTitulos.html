@@ -13,12 +13,12 @@
 	<div class="card">
 		<div class="clearfix">
 			<h5 class="card-header">Pesquisa de títulos
-				<a class="btn btn-link aw-link-card float-right" href="/titulos/novo">Novo título</a>
+				<a class="btn btn-link aw-link-card float-right" th:href="@{/titulos/novo}">Novo título</a>
 			</h5>
 		</div>
 		<div class="card-body">
 
-			<form method="GET" action="/titulos" th:object="${filtro}">
+			<form method="GET" th:action="@{/titulos}" th:object="${filtro}">
 				<div class="form-group">
 					<div class="row">
 						<div class="col-md-4">
