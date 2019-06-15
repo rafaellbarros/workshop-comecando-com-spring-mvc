@@ -7,6 +7,9 @@
 	<title>Pesquisa de título</title>
 </head>
 <section layout:fragment="conteudo">
+
+	<div layout:include="MensagemGeral"></div>
+
 	<div class="card">
 		<div class="clearfix">
 			<h5 class="card-header">Pesquisa de títulos
@@ -22,23 +25,29 @@
 						<th class="text-center col-2">Data de vencimento</th>
 						<th class="text-right col-2">Valor</th>
 						<th class="text-center col-2">Status</th>
-						<th class="col-1"></th>
+						<th class="text-center col-1"></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr class="d-flex" th:each="titulo : ${titulos}">
 						<td class="text-center col-1" th:text="${titulo.codigo}"></td>
-						<td class="text-left  col-4" th:text="${titulo.descricao}"></td>
-						<td class="text-center  col-2" th:text="${{titulo.dataVencimento}}"></td>
-						<td class="text-right  col-2" th:text="|R$ ${{titulo.valor}}|"></td>
-						<td class="text-center  col-2">
+						<td class="text-left col-4" th:text="${titulo.descricao}"></td>
+						<td class="text-center col-2" th:text="${{titulo.dataVencimento}}"></td>
+						<td class="text-right col-2" th:text="|R$ ${{titulo.valor}}|"></td>
+						<td class="text-center col-2">
 							<span class="badge" th:text="${titulo.status.descricao}"
 								th:classappend="${titulo.pendente ? 'badge-danger' : 'badge-success'}"></span>
 						</td>
-						<td class="text-center  col-1">
-							<a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}">
-								<span class="fas fa-pencil-alt"></span>
-							</a>
+						<td class="text-center col-1">
+							<div class="row d-flex justify-content-center">
+									<a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}">
+										<span class="fas fa-pencil-alt"></span>
+									</a>
+									<a href="javascript:void(0)" class="btn btn-link btn-xs" data-toggle="modal" 
+										data-target="#confirmacaoExclusaoModal" th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}">
+											<span class="fas fa-trash-alt"></span>
+									</a>
+							</div>	
 						</td>
 					</tr>
 					<tr>
@@ -47,6 +56,9 @@
 				</tbody>
 			</table>
 		</div>
+
+		<div layout:include="DialogoConfirmacaoExclusao"></div>
+
 	</div>
 </section>
 </html>

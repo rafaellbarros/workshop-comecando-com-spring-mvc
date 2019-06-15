@@ -9,7 +9,8 @@
 <section layout:fragment="conteudo">
 	<form method="POST" action="/titulos" th:object="${titulo}" class="needs-validation">
 
-		<div layout:include="Mensagem"></div>
+		<div layout:include="MensagemGeral"></div>
+		<div layout:include="MensagemErro"></div>
 
 
 		<div class="card">
