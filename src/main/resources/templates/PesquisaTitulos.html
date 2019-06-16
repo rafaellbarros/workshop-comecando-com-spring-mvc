@@ -36,54 +36,55 @@
 				</div>	
 			</form>
 
-
-			<table class="table table-striped table-bordered">
-				<thead>
-					<tr class="d-flex">
-						<th class="text-center col-1">#</th>
-						<th class="text-left col-4">Descrição</th>
-						<th class="text-center col-2">Data de vencimento</th>
-						<th class="text-right col-2">Valor</th>
-						<th class="text-center col-1">Status</th>
-						<th class="text-center col-2"></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="d-flex" th:each="titulo : ${titulos}">
-						<td class="text-center col-1" th:text="${titulo.codigo}"></td>
-						<td class="text-left col-4" th:text="${titulo.descricao}"></td>
-						<td class="text-center col-2" th:text="${{titulo.dataVencimento}}"></td>
-						<td class="text-right col-2" th:text="|R$ ${{titulo.valor}}|"></td>
-						<td class="text-center col-1" th:attr="data-role=${titulo.codigo}">
-							<span class="badge" th:text="${titulo.status.descricao}"
-								th:classappend="${titulo.pendente ? 'badge-danger' : 'badge-success'}"></span>
-						</td>
-						<td class="text-center col-2">
-							<div class="row d-flex justify-content-center">
-								<a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"
-									title="Editar" rel="tooltip" data-placement="top">
-									<span class="fas fa-pencil-alt"></span>
-								</a>
-								<a href="javascript:void(0)" class="btn btn-link btn-xs" data-toggle="modal"
-									data-target="#confirmacaoExclusaoModal"
-									th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}"
-									title="Excluir" rel="tooltip" data-placement="top">
-									<span class="fas fa-trash-alt"></span>
-								</a>
-								<a class="btn btn-link btn-xs js-atualizar-status" th:if="${titulo.pendente}"
-									th:attr="data-codigo=${titulo.codigo}"
-									th:href="@{/titulos/{codigo}/receber(codigo=${titulo.codigo})}" title="Receber"
-									rel="tooltip" data-placement="top">
-									<span class="fas fa-check"></span>
-								</a>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="6" th:if="${#lists.isEmpty(titulos)}">Nenhum título foi encontrado</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="table-responsive table-responsive-sm table-responsive-md">
+				<table class="table table-bordered">
+					<thead>
+						<tr class="d-flex">
+							<th class="text-center col-2 col-sm-1 col-md-1">#</th>
+							<th class="text-left col-3 col-sm-3 col-md-3">Descrição</th>
+							<th class="text-center col-3 col-sm-2 col-md-2">Data de vencimento</th>
+							<th class="text-right col-3 col-sm-2 col-md-2">Valor</th>
+							<th class="text-center col-2 col-sm-2 col-md-2">Status</th>
+							<th class="col-2 col-sm-2 col-md-2"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="d-flex" th:each="titulo : ${titulos}">
+							<td class="text-center col-2 col-sm-1 col-md-1" th:text="${titulo.codigo}"></td>
+							<td class="text-left col-3 col-sm-3 col-md-3" th:text="${titulo.descricao}"></td>
+							<td class="text-center col-3 col-sm-2 col-md-2" th:text="${{titulo.dataVencimento}}"></td>
+							<td class="text-right col-3 col-sm-2 col-md-2" th:text="|R$ ${{titulo.valor}}|"></td>
+							<td class="text-center col-2 col-sm-2 col-md-2" th:attr="data-role=${titulo.codigo}">
+								<span class="badge" th:text="${titulo.status.descricao}"
+									th:classappend="${titulo.pendente ? 'badge-danger' : 'badge-success'}"></span>
+							</td>
+							<td class="col-2 col-sm-2 col-md-2">
+								<div class="row justify-content-center">
+									<a class="col-1 col-sm-1 col-md-1 btn btn-link btn-sm" th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"
+										title="Editar" rel="tooltip" data-placement="top">
+										<span class="fas fa-pencil-alt"></span>
+									</a>
+									<a href="javascript:void(0)" class="col-1 col-sm-1 col-md-1 btn btn-link btn-sm" data-toggle="modal"
+										data-target="#confirmacaoExclusaoModal"
+										th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}"
+										title="Excluir" rel="tooltip" data-placement="top">
+										<span class="fas fa-trash-alt"></span>
+									</a>
+									<a class="col-1 col-sm-1 col-md-1 btn btn-link btn-sm js-atualizar-status" th:if="${titulo.pendente}"
+										th:attr="data-codigo=${titulo.codigo}"
+										th:href="@{/titulos/{codigo}/receber(codigo=${titulo.codigo})}" title="Receber"
+										rel="tooltip" data-placement="top">
+										<span class="fas fa-check"></span>
+									</a>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="6" th:if="${#lists.isEmpty(titulos)}">Nenhum título foi encontrado</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 
 		<div layout:include="DialogoConfirmacaoExclusao"></div>
