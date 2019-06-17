@@ -22,10 +22,16 @@ import org.springframework.format.annotation.NumberFormat;
 
 import com.algaworks.cobranca.model.enums.StatusTitulo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Titulo {
 
 	@Id

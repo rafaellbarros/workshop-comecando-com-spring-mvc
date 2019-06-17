@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.algaworks.cobranca.model.Titulo;
 import com.algaworks.cobranca.model.enums.StatusTitulo;
-import com.algaworks.cobranca.repository.TituloRepository;
 import com.algaworks.cobranca.repository.filter.TituloFilter;
 import com.algaworks.cobranca.service.TituloService;
 
